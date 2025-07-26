@@ -276,11 +276,15 @@
       </div>
       
       <!-- Markdown转换设置 -->
+      <!-- 在Markdown转换设置section中添加以下内容 -->
       <div class="section">
         <h2>📝 Markdown转换设置</h2>
         
+        <!-- 全局默认设置 -->
+        <h3>🌐 全局默认设置</h3>
+        
         <div class="form-group">
-          <label for="header-selectors">标题选择器 (CSS选择器，用逗号分隔)</label>
+          <label for="header-selectors">默认标题选择器 (CSS选择器，用逗号分隔)</label>
           <input type="text" id="header-selectors" 
                  value="h1, h2, h3, h4, h5, h6" 
                  placeholder="h1, h2, h3, h4, h5, h6">
@@ -288,13 +292,34 @@
         </div>
         
         <div class="form-group">
-          <label for="content-selectors">内容选择器 (CSS选择器，用逗号分隔)</label>
+          <label for="content-selectors">默认内容选择器 (CSS选择器，用逗号分隔)</label>
           <input type="text" id="content-selectors" 
                  value="article, .content, .post-content, .entry-content, main, .main-content" 
                  placeholder="article, .content, main">
           <div class="help-text">用于识别页面主要内容区域的CSS选择器，按优先级排序</div>
         </div>
         
+        <!-- 网站特定配置 -->
+        <h3>🎯 网站特定配置</h3>
+        <div class="help-text" style="margin-bottom: 15px;">为特定网站配置专用的标题和内容选择器，优先级高于全局设置</div>
+        
+        <div id="site-configs">
+          <!-- 动态生成的网站配置项 -->
+        </div>
+        
+        <button type="button" id="add-site-config" class="btn btn-secondary" style="margin-bottom: 20px;">➕ 添加网站配置</button>
+        
+        <!-- 预设配置 -->
+        <h3>🔧 预设配置</h3>
+        <div class="preset-configs">
+          <button type="button" class="btn btn-secondary preset-btn" data-preset="wechat">微信公众号</button>
+          <button type="button" class="btn btn-secondary preset-btn" data-preset="zhihu">知乎</button>
+          <button type="button" class="btn btn-secondary preset-btn" data-preset="juejin">掘金</button>
+          <button type="button" class="btn btn-secondary preset-btn" data-preset="csdn">CSDN</button>
+          <button type="button" class="btn btn-secondary preset-btn" data-preset="github">GitHub</button>
+        </div>
+        
+        <!-- 其他设置保持不变 -->
         <div class="form-group">
           <label for="exclude-selectors">排除选择器 (CSS选择器，用逗号分隔)</label>
           <input type="text" id="exclude-selectors" 
@@ -317,7 +342,64 @@
           <input type="checkbox" id="add-metadata" checked>
           <label for="add-metadata">添加页面元信息（标题、URL、导出时间）</label>
         </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="use-turndown-service" checked>
+          <label for="use-turndown-service">使用TurndownService增强转换</label>
+        </div>
       </div>
+      
+      <style>
+        .site-config-item {
+          background: white;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          padding: 15px;
+          margin-bottom: 15px;
+          position: relative;
+        }
+        
+        .site-config-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 15px;
+        }
+        
+        .site-config-header h4 {
+          margin: 0;
+          color: #333;
+        }
+        
+        .remove-site-config {
+          background: #f44336;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          padding: 5px 10px;
+          cursor: pointer;
+          font-size: 12px;
+        }
+        
+        .site-config-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 15px;
+          margin-bottom: 10px;
+        }
+        
+        .preset-configs {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+        
+        .preset-btn {
+          padding: 8px 16px;
+          font-size: 12px;
+        }
+      </style>
       
       <!-- GitHub设置 -->
       <div class="section">
