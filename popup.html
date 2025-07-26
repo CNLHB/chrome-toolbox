@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱华工具箱</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <h1>🧰 爱华工具箱</h1>
+      <p class="version">v1.0.0</p>
+    </header>
+    
+    <main class="popup-main">
+      <div class="feature-list">
+        <div class="feature-item" id="github-feature">
+          <div class="feature-icon">🚀</div>
+          <div class="feature-content">
+            <h3>GitHub1s跳转</h3>
+            <p>快速跳转到在线代码编辑器</p>
+          </div>
+          <div class="feature-status active">已启用</div>
+        </div>
+        
+        <div class="feature-item" id="markdown-feature">
+          <div class="feature-icon">📝</div>
+          <div class="feature-content">
+            <h3>HTML转Markdown</h3>
+            <p>导出网页内容为Markdown格式</p>
+          </div>
+          <div class="feature-status active">已启用</div>
+        </div>
+        
+        <div class="feature-item" id="future-feature">
+          <div class="feature-icon">🔧</div>
+          <div class="feature-content">
+            <h3>更多功能</h3>
+            <p>敬请期待更多实用工具</p>
+          </div>
+          <div class="feature-status disabled">开发中</div>
+        </div>
+      </div>
+      
+      <div class="action-buttons">
+        <button id="open-options" class="btn btn-primary">
+          ⚙️ 设置选项
+        </button>
+        <button id="help-btn" class="btn btn-secondary">
+          ❓ 使用帮助
+        </button>
+      </div>
+    </main>
+    
+    <footer class="popup-footer">
+      <p>&copy; 2024 爱华工具箱 - 让网页操作更简单</p>
+    </footer>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

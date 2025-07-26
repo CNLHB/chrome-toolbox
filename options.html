@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱华工具箱 - 设置</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .header p {
+      opacity: 0.9;
+      font-size: 16px;
+    }
+    
+    .content {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+      padding: 25px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-left: 4px solid #2196f3;
+    }
+    
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #2196f3;
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+    }
+    
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+    }
+    
+    .help-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: #2196f3;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #1976d2;
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      background: #f5f5f5;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+    
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+    
+    .status-message {
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 15px;
+      display: none;
+    }
+    
+    .status-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .status-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    
+    .feature-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 24px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .slider {
+      background-color: #2196f3;
+    }
+    
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🧰 爱华工具箱设置</h1>
+      <p>个性化配置您的浏览器工具</p>
+    </header>
+    
+    <div class="content">
+      <!-- 功能开关设置 -->
+      <div class="section">
+        <h2>🔧 功能开关</h2>
+        
+        <div class="feature-toggle">
+          <div>
+            <strong>GitHub1s跳转</strong>
+            <div class="help-text">在GitHub仓库页面显示跳转到在线编辑器的选项</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="github-feature-enabled" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="feature-toggle">
+          <div>
+            <strong>HTML转Markdown</strong>
+            <div class="help-text">提供网页内容导出为Markdown格式的功能</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="markdown-feature-enabled" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="feature-toggle">
+          <div>
+            <strong>右键菜单显示</strong>
+            <div class="help-text">在网页右键菜单中显示工具箱选项</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="context-menu-enabled" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Markdown转换设置 -->
+      <div class="section">
+        <h2>📝 Markdown转换设置</h2>
+        
+        <div class="form-group">
+          <label for="header-selectors">标题选择器 (CSS选择器，用逗号分隔)</label>
+          <input type="text" id="header-selectors" 
+                 value="h1, h2, h3, h4, h5, h6" 
+                 placeholder="h1, h2, h3, h4, h5, h6">
+          <div class="help-text">用于识别页面标题的CSS选择器，支持多个选择器用逗号分隔</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="content-selectors">内容选择器 (CSS选择器，用逗号分隔)</label>
+          <input type="text" id="content-selectors" 
+                 value="article, .content, .post-content, .entry-content, main, .main-content" 
+                 placeholder="article, .content, main">
+          <div class="help-text">用于识别页面主要内容区域的CSS选择器，按优先级排序</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="exclude-selectors">排除选择器 (CSS选择器，用逗号分隔)</label>
+          <input type="text" id="exclude-selectors" 
+                 value=".ad, .advertisement, .sidebar, .navigation, .footer" 
+                 placeholder=".ad, .sidebar, .navigation">
+          <div class="help-text">需要排除的元素选择器，如广告、侧边栏等</div>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="include-images" checked>
+          <label for="include-images">包含图片链接</label>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="include-links" checked>
+          <label for="include-links">保留超链接</label>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="add-metadata" checked>
+          <label for="add-metadata">添加页面元信息（标题、URL、导出时间）</label>
+        </div>
+      </div>
+      
+      <!-- GitHub设置 -->
+      <div class="section">
+        <h2>🚀 GitHub设置</h2>
+        
+        <div class="form-group">
+          <label for="github1s-domain">GitHub1s域名</label>
+          <select id="github1s-domain">
+            <option value="github1s.com">github1s.com (官方)</option>
+            <option value="vscode.dev/github">vscode.dev/github (微软)</option>
+            <option value="github.dev">github.dev (GitHub官方)</option>
+          </select>
+          <div class="help-text">选择跳转的在线编辑器服务</div>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="open-in-new-tab" checked>
+          <label for="open-in-new-tab">在新标签页打开</label>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="show-notification" checked>
+          <label for="show-notification">显示跳转通知</label>
+        </div>
+      </div>
+      
+      <!-- 高级设置 -->
+      <div class="section">
+        <h2>⚙️ 高级设置</h2>
+        
+        <div class="form-group">
+          <label for="custom-css">自定义CSS样式</label>
+          <textarea id="custom-css" 
+                    placeholder="/* 在这里添加自定义CSS样式 */\n.my-custom-style {\n  color: #333;\n}"></textarea>
+          <div class="help-text">为插件界面添加自定义样式</div>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="debug-mode">
+          <label for="debug-mode">启用调试模式</label>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="auto-update" checked>
+          <label for="auto-update">自动检查更新</label>
+        </div>
+      </div>
+      
+      <!-- 操作按钮 -->
+      <div class="button-group">
+        <button id="save-settings" class="btn btn-primary">💾 保存设置</button>
+        <button id="reset-settings" class="btn btn-secondary">🔄 恢复默认</button>
+        <button id="export-settings" class="btn btn-secondary">📤 导出配置</button>
+        <button id="import-settings" class="btn btn-secondary">📥 导入配置</button>
+      </div>
+      
+      <div id="status-message" class="status-message"></div>
+    </div>
+  </div>
+  
+  <input type="file" id="import-file" accept=".json" style="display: none;">
+  
+  <script src="options.js"></script>
+</body>
+</html>
