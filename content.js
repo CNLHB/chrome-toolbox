@@ -382,7 +382,7 @@ if (document.readyState === "loading") {
 
 function initializeContentScript() {
   // 内容脚本初始化逻辑
-  console.log("爱华工具箱内容脚本已加载");
+  console.log("爱华工具箱内容脚本已加载ing");
 
   // 暴露函数到全局，方便调试和外部调用
   window.aihuaToolbox = {

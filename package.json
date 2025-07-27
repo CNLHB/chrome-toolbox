@@ -1,0 +1,12 @@
+{
+  "name": "aihua-toolbox",
+  "version": "1.0.0",
+  "description": "爱华工具箱Chrome扩展",
+  "scripts": {
+    "dev": "node dev-reload.js",
+    "build": "echo 'Building extension...' && echo 'Done!'"
+  },
+  "devDependencies": {
+    "web-ext": "^7.0.0"
+  }
+}

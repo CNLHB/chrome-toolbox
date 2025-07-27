@@ -1,1 +1,7 @@
-Error in event handler: TypeError: URL.createObjectURL is not a function at chrome-extension://ogbhcfjkiodbjgomihbckfnkppmahmjj/background.js:116:21
+
+
+npminstall-gweb-ext
+
+cde:\trae\vue-server\chrome-plugin
+
+web-extrun--target=chromium--start-url="chrome://extensions/"
