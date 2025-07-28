@@ -170,3 +170,17 @@ function handleHtmlToMarkdown(info, tab) {
     selectedText: info.selectionText,
   });
 }
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log("request.action", request.action);
+
+  if (request.action === "downloadMarkdown") {
+    // // 下载Markdown文件
+    // const blob = new Blob([request.content], { type: 'text/markdown' });
+    // const url = URL.createObjectURL(blob);
+    // chrome.downloads.download({
+    //   url: url,
+    //   filename: request.filename || 'exported-content.md',
+    //   saveAs: true
+    // });
+  }
+});

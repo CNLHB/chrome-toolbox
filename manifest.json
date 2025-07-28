@@ -8,7 +8,8 @@
     "activeTab",
     "storage",
     "downloads",
-    "notifications"
+    "notifications",
+    "tabs"
   ],
   "host_permissions": [
     "https://github.com/*",
