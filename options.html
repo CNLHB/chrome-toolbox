@@ -287,6 +287,53 @@
       color: #333;
     }
 
+    /* 折叠功能样式 */
+    .collapsible-section {
+      margin-bottom: 20px;
+    }
+
+    .collapsible-header {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .collapsible-header:hover {
+      color: #2196f3;
+    }
+
+    .collapse-icon {
+      font-size: 14px;
+      transition: transform 0.3s ease;
+      color: #666;
+      padding-left: 4px;
+    }
+
+    .collapse-icon.collapsed {
+      transform: rotate(-180deg);
+    }
+
+    .collapsible-content {
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 2000px;
+      opacity: 1;
+    }
+
+    .collapsible-content.collapsed {
+      max-height: 0;
+      opacity: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
     .remove-site-config {
       background: #f44336;
       color: white;
@@ -328,21 +375,29 @@
 
     /* 响应式设计 */
     @media (max-width: 768px) {
+      .main-content {
+        padding: 0 30px;
+      }
+
       .container {
         flex-direction: column;
       }
-      
+
       .sidebar {
         width: 100%;
         height: auto;
         position: relative;
       }
-      
+
       .sidebar-buttons {
         flex-direction: row;
         flex-wrap: wrap;
       }
-      
+
+      /* .toggle-switch {
+        width: 65px;
+      } */
+
       .sidebar .btn {
         flex: 1;
         min-width: 120px;
@@ -357,7 +412,7 @@
     <div class="sidebar">
       <h1>🧰 爱华工具箱</h1>
       <p>个性化配置您的浏览器工具</p>
-      
+
       <!-- 操作按钮组 -->
       <div class="sidebar-buttons">
         <button id="save-settings" class="btn btn-primary">💾 保存设置</button>
@@ -365,7 +420,7 @@
         <button id="export-settings" class="btn btn-secondary">📤 导出配置</button>
         <button id="import-settings" class="btn btn-secondary">📥 导入配置</button>
       </div>
-      
+
       <div id="status-message" class="status-message"></div>
     </div>
 
@@ -435,25 +490,32 @@
           <div class="help-text">用于识别页面主要内容区域的CSS选择器，按优先级排序</div>
         </div>
 
-        <!-- 网站特定配置 -->
-        <h3>🎯 网站特定配置</h3>
-        <div class="help-text" style="margin-bottom: 15px;">为特定网站配置专用的标题和内容选择器，优先级高于全局设置</div>
+        <!-- 网站特定配置 - 可折叠 -->
+        <div class="collapsible-section">
+          <h3 class="collapsible-header" data-target="site-configs-container">
+            🎯 网站特定配置
+            <span class="collapse-icon" id="site-configs-icon">▼</span>
+          </h3>
+          <div class="help-text" style="margin-bottom: 15px;">为特定网站配置专用的标题和内容选择器，优先级高于全局设置</div>
 
-        <div id="site-configs">
-          <!-- 动态生成的网站配置项 -->
-        </div>
+          <div id="site-configs-container" class="collapsible-content">
+            <div id="site-configs">
+              <!-- 动态生成的网站配置项 -->
+            </div>
 
-        <button type="button" id="add-site-config" class="preset-btn" style="margin-bottom: 20px;">➕
-          添加网站配置</button>
+            <button type="button" id="add-site-config" class="preset-btn" style="margin-bottom: 20px;">➕
+              添加网站配置</button>
 
-        <!-- 预设配置 -->
-        <h3>🔧 预设配置</h3>
-        <div class="preset-configs">
-          <button type="button" class="preset-btn" data-preset="wechat">微信公众号</button>
-          <button type="button" class="preset-btn" data-preset="zhihu">知乎</button>
-          <button type="button" class="preset-btn" data-preset="juejin">掘金</button>
-          <button type="button" class="preset-btn" data-preset="csdn">CSDN</button>
-          <button type="button" class="preset-btn" data-preset="github">GitHub</button>
+            <!-- 预设配置 -->
+            <h4>🔧 预设配置</h4>
+            <div class="preset-configs">
+              <button type="button" class="preset-btn" data-preset="wechat">微信公众号</button>
+              <button type="button" class="preset-btn" data-preset="zhihu">知乎</button>
+              <button type="button" class="preset-btn" data-preset="juejin">掘金</button>
+              <button type="button" class="preset-btn" data-preset="csdn">CSDN</button>
+              <button type="button" class="preset-btn" data-preset="github">GitHub</button>
+            </div>
+          </div>
         </div>
 
         <!-- 其他设置保持不变 -->

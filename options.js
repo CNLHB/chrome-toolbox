@@ -514,3 +514,71 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true; // 保持消息通道开放
   }
 });
+
+/**
+ * 切换折叠状态的函数
+ * @param {string} containerId - 容器元素的ID
+ */
+const toggleCollapse = (containerId) => {
+  const container = document.getElementById(containerId);
+  const icon = document.getElementById(
+    containerId.replace("-container", "-icon")
+  );
+
+  if (container && icon) {
+    container.classList.toggle("collapsed");
+    icon.classList.toggle("collapsed");
+
+    // 保存折叠状态到本地存储
+    const isCollapsed = container.classList.contains("collapsed");
+    localStorage.setItem(`collapse-${containerId}`, isCollapsed);
+  }
+};
+
+/**
+ * 恢复折叠状态的函数
+ * @param {string} containerId - 容器元素的ID
+ */
+const restoreCollapseState = (containerId) => {
+  const isCollapsed =
+    localStorage.getItem(`collapse-${containerId}`) === "true";
+  if (isCollapsed) {
+    const container = document.getElementById(containerId);
+    const icon = document.getElementById(
+      containerId.replace("-container", "-icon")
+    );
+    if (container && icon) {
+      container.classList.add("collapsed");
+      icon.classList.add("collapsed");
+    }
+  }
+};
+
+/**
+ * 初始化折叠功能的函数
+ */
+const initializeCollapsible = () => {
+  // 为所有可折叠标题添加点击事件监听器
+  const collapsibleHeaders = document.querySelectorAll(".collapsible-header");
+  collapsibleHeaders.forEach((header) => {
+    header.addEventListener("click", () => {
+      const targetId = header.getAttribute("data-target");
+      if (targetId) {
+        toggleCollapse(targetId);
+      }
+    });
+  });
+
+  // 恢复网站配置的折叠状态
+  restoreCollapseState("site-configs-container");
+};
+
+// 修改现有的DOMContentLoaded事件监听器
+document.addEventListener("DOMContentLoaded", function () {
+  initializeOptions();
+  bindEvents();
+  loadSettings();
+
+  // 初始化折叠功能
+  initializeCollapsible();
+});
