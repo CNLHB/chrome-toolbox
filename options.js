@@ -15,7 +15,8 @@ const DEFAULT_SETTINGS = {
   headerSelectors: "h1, h2, h3, h4, h5, h6",
   contentSelectors:
     "article, .content, .post-content, .entry-content, main, .main-content",
-  excludeSelectors: ".ad, .advertisement, .sidebar, .navigation, .footer",
+  excludeSelectors:
+    "style, .ad, .advertisement, .sidebar, .navigation, .footer",
   includeImages: true,
   includeLinks: true,
   addMetadata: true,
@@ -48,8 +49,9 @@ const PRESET_CONFIGS = {
   juejin: {
     domain: "juejin.cn",
     name: "掘金",
-    titleSelector: ".article-title, .title",
-    contentSelector: ".markdown-body, .article-content",
+    titleSelector: ".article-title",
+    contentSelector: ".markdown-body",
+    excludeSelectors: "style",
   },
   csdn: {
     domain: "blog.csdn.net",

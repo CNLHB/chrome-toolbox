@@ -23,7 +23,7 @@ function convertPageToMarkdown() {
           "article, .content, .post-content, .entry-content, main, .main-content",
         excludeSelector:
           settings.excludeSelectors ||
-          ".ad, .advertisement, .sidebar, .navigation, .footer",
+          "style,.ad, .advertisement, .sidebar, .navigation, .footer",
       };
     }
 
@@ -37,18 +37,20 @@ function convertPageToMarkdown() {
           window.location.href
         }\n> 导出时间: ${new Date().toLocaleString()}\n\n${content}`
       : content;
-    const blob = new Blob([markdownContent], { type: "text/markdown" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = title + ".md";
-    // 模拟点击下载
-    a.click();
-    // 释放URL对象
-    URL.revokeObjectURL(url);
+    markdownAsFile(title, markdownContent);
   });
 }
-
+function markdownAsFile(title, markdownContent) {
+  const blob = new Blob([markdownContent], { type: "text/markdown" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = title + ".md";
+  // 模拟点击下载
+  a.click();
+  // 释放URL对象
+  URL.revokeObjectURL(url);
+}
 // 查找匹配的网站配置
 function findSiteConfig(domain, siteConfigs) {
   return siteConfigs.find(
@@ -155,13 +157,7 @@ function exportElementBySelector(selector, filename = null) {
           window.location.href
         }\n> 选择器: ${selector}\n> 导出时间: ${new Date().toLocaleString()}\n\n${content}`
       : content;
-
-    // 发送到后台脚本进行下载
-    chrome.runtime.sendMessage({
-      action: "downloadMarkdown",
-      content: markdownContent,
-      filename: `${sanitizeFilename(title)}.md`,
-    });
+    markdownAsFile(title, markdownContent);
   });
 }
 
@@ -205,13 +201,7 @@ function exportMultipleSelectors(selectors, filename = null) {
           ", "
         )}\n> 导出时间: ${new Date().toLocaleString()}\n\n${combinedContent}`
       : combinedContent;
-
-    // 发送到后台脚本进行下载
-    chrome.runtime.sendMessage({
-      action: "downloadMarkdown",
-      content: markdownContent,
-      filename: `${sanitizeFilename(title)}.md`,
-    });
+    markdownAsFile(title, markdownContent);
   });
 }
 
