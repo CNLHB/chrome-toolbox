@@ -67,13 +67,6 @@ const PRESET_CONFIGS = {
   },
 };
 
-// 页面加载完成后初始化
-document.addEventListener("DOMContentLoaded", function () {
-  initializeOptions();
-  bindEvents();
-  loadSettings();
-});
-
 // 初始化设置页面
 function initializeOptions() {
   console.log("爱华工具箱设置页面已加载");
